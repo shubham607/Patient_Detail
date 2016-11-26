@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Validation_Form</title>
+
+<style>
+
+div{
+background-color:black;
+}
+.in{
+	color:white;
+	font-size:100%;
+}
+.h1{	
+	color:white;
+	font-size:350%;
+}
+
+</style>
+<script type="text/javascript">
+function validate()
+{
+	var fname=document.myform.f_name.value;
+	var lname=document.myform.l_name.value;
+	var age=document.myform.age.value;
+	var phone_no= document.myform.phone.value;
+	var msg= document.myform.message.value;
+	
+	var f_l=fname.length;
+	var l_l=lname.length;
+	var p=phone_no.length;
+	var m=msg.length;
+	
+	var alphaf =/^[A-Za-z]+$/.test(fname);
+	var alphal =/^[A-Za-z]+$/.test(lname);
+	
+	if(!alphaf) 
+		{
+		document.getElementById("span1").innerHTML="* only AlphaCharacters allowed";
+		return false;
+		}
+	else if(f_l>15)
+		{
+		document.getElementById("span1").innerHTML="* length less than 15";
+	
+		return false;
+		}
+	else if(!alphal) 
+		{
+		document.getElementById("span2").innerHTML="* only AlphaCharacters allowed";
+		
+		return false;
+		}
+	else if(l_l>15)
+	{
+		document.getElementById("span2").innerHTML="* length less than 15";
+		return false;
+		}
+	else if(isNaN(age))
+	{
+		document.getElementById("span3").innerHTML="* only numbers allowed";
+		return false;
+		}
+	else if(age<0 || age>99)
+	{
+		document.getElementById("span3").innerHTML="* age can never be negative and less than 100 ";
+		return false;
+		}
+	
+	else if(isNaN(phone_no))
+	{
+		document.getElementById("span4").innerHTML="* only numbers allowed";
+		return false;
+		}
+	else if(phone_no<0)
+	{
+		document.getElementById("span4").innerHTML="* no negative numbers";
+		return false;
+		}
+	else if(p!=10)
+	{
+		document.getElementById("span4").innerHTML="* 10 numbers only ";
+		return false;
+		}
+	else if(m>151)
+	{
+		document.getElementById("span5").innerHTML="* Max 150 characters ";
+		return false;
+		}
+	
+	
+	else 
+		return true;
+}
+
+</script>
+
+</head>
+<body>
+<div>
+<center><h class="h1">Patient Detail</h></center><br>
+<center>
+
+<form name="myform" method="post" action="Form" onsubmit="return validate()">
+<span class="in">FirstName:</span><input type="text"  placeholder="enter firstname" 
+
+name="f_name" required /> <span class="in" id="span1"></span><br><br>
+<span class="in">LastName:</span><input type="text" placeholder="enter lastname" name="l_name" required /> <span class="in" id="span2"></span><br><br>
+<span class="in">Age:</span><input type="text" placeholder="enter age" name="age" required/><span class="in" id="span3"></span><br><br>
+<span class="in">Date Of Birth:</span><input type="date" placeholder="enter date of birth" name="d_o_b" required/><br><br>
+<span class="in">Gender:</span><select name="gender">
+<option>Male</option>
+<option>Female</option>
+</select><br><br>
+<span class="in">Phone No:</span><input type="text" placeholder="enter PhoneNumber" name="phone" required 
+
+/><span class="in" id="span4"></span><br><br>
+<span class="in">About yourself..?(optional)</span><br>
+<textarea name="message" rows="5" cols="30" placeholder="Max(150)characters."  ></textarea><span class="in" id="span5"></span><br><br><br>
+<input type="submit" value="submit" />&nbps;<input type="reset" 
+
+value="Reset"/><br><br>
+</form>
+
+</center>
+</div>
+</body>
+</html>
