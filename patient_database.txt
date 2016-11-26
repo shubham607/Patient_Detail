@@ -1,0 +1,2 @@
+using mysql- database
+Create table patient (f_name varchar(15),l_name varchar(15),age varchar(2),D_O_B date,Gender varchar(10),phone_no varchar(10),message varchar(150));
