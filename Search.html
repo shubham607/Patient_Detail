@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Patient_Search</title>
+
+
+<script src="jquery-1.10.2.min.js" ></script> 
+
+<script>
+    function search()
+    {
+       val = $('#p_name').val();
+       if(val.length>0)
+       {
+           $.post("search.php",{searchKey:val},function(data){
+               $('#suggestions').html(data).show();
+           });
+       }
+       else
+           $('#suggestions').hide();
+    }
+</script>
+<style>
+    #suggestions{
+        width: 150px;
+        border: 1px solid white;
+		color:white;
+        display: none;
+    }
+
+div{
+background-color:black;
+}
+
+.h1{	
+	color:white;
+	font-size:250%;
+}
+</style>
+</head>
+<body>
+<center>
+<div>
+
+<h class="h1" >Patient Directory</h><br>
+<input type="text" placeholder="Search(Patient Name)" id="p_name" onkeyup="search()" /> <br><br>
+<div id="suggestions"></div><br>
+</div>
+</center>
+</body>
+</html>
